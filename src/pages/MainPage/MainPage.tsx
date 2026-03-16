@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { songs } from '../../data/songs';
 import { useFollowings } from '../../context/FollowingsContext';
 import { SongCard } from '../../components/song_lists/SongCard/SongCard';
+import menuIcon from '../../assets/images/burger.png'
+import magnifierIcon from '../../assets/images/magnifier.png'
+
 
 interface Props {
     onlyFollowings: boolean
@@ -32,10 +35,10 @@ export const MainPage = ({ onlyFollowings }: Props) => {
     return (<>
         <header className="header">
             <div className="search-menu">
-                <img className="burger" draggable="false" src="src/assets/images/burger.png" alt="menu" />
+                <img className="burger" draggable="false" src={menuIcon} alt="menu" />
                 <div className="search-box">
                     <input className="search" type="search" autoComplete="off" placeholder="Поиск..." value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
-                    <img draggable="false" className={`magnifier ${searchValue.length > 0 ? 'n' : ''}`} src="src/assets/images/magnifier.png" alt="search" />
+                    <img draggable="false" className={`magnifier ${searchValue.length > 0 ? 'n' : ''}`} src={magnifierIcon} alt="search" />
                 </div>
             </div>
 

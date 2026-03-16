@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './SongCard.css'
 import { useFollowings } from '../../../context/FollowingsContext';
 import { useNavigate } from 'react-router-dom';
+import folIcon from '../../../assets/images/fol.png'
+import nofolIcon from '../../../assets/images/nofol.png'
 
 
 interface SongCardProps {
@@ -37,7 +39,7 @@ export const SongCard = ({id, name, cats, isFollowed = false}: SongCardProps) =>
                 <p className="song-cats">{cats.join(', ')}</p>
             </div>
             <div className="song-box_button-box">
-                <img src={isSongFollowed ? `src/assets/images/fol.png` : `src/assets/images/nofol.png`} onClick={() => changeFollowingStatus()} className={`song-following-button`} draggable="false" />
+                <img src={isSongFollowed ? folIcon : nofolIcon} onClick={() => changeFollowingStatus()} className={`song-following-button`} draggable="false" />
             </div>
         </div>
     </>);

@@ -2,6 +2,8 @@ import './EnteringPage.css'
 import { useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
+import guitarIcon from "../../assets/images/guitar.png"
+import textIcon from "../../assets/images/text.png"
 
 
 export const EnteringPage = () => {
@@ -28,13 +30,13 @@ export const EnteringPage = () => {
 
         <div className="buttons-box">
             <div onClick={ () => switchGuitarModeTo(true) } className="buttons-box_button">
-                <img draggable="false" src="src/assets/images/guitar.png" alt="guitar-mode" className="buttons-box_button-image"/>
+                <img draggable="false" src={guitarIcon} alt="guitar-mode" className="buttons-box_button-image"/>
                 <p className={`buttons-box_button-title ${guitarMode ? "selected" : ""}`}>С аккордами</p>
                 <div className="indicator"></div>
             </div>
 
             <div onClick={ () => switchGuitarModeTo(false) } className="buttons-box_button">
-                <img draggable="false" src="src/assets/images/text.png" alt="default-mode" className="buttons-box_button-image"/>
+                <img draggable="false" src={textIcon} alt="default-mode" className="buttons-box_button-image"/>
                 <p className={`buttons-box_button-title ${!guitarMode ? "selected" : ""}`}>Только текст</p>
                 <div className="indicator"></div>
             </div>
