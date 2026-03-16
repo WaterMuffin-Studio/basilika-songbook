@@ -1,0 +1,42 @@
+.song-view {
+    font-family: 'Courier New', monospace;
+    padding: 1rem;
+    margin-top: calc(var(--user-fs) + 0.2rem);
+    text-align: start;
+}
+
+.song-line {
+    position: relative;
+    line-height: calc(2.8 * var(--user-fs));
+    white-space: var(--user-wrap);
+}
+.song-line.no-chords {
+    line-height: calc(1.8 * var(--user-fs));
+}
+
+.chords-line {
+    position: absolute;
+    top: calc(var(--user-fs) * (-1) - 0.2rem);
+    left: 0;
+    width: 100%;
+    white-space: var(--user-wrap);
+    font-weight: bold;
+    font-size: var(--user-fs);
+    color: var(--user-chords);
+}
+
+.text-line {
+    white-space: var(--user-wrap);
+    user-select: text;
+    font-size: var(--user-fs);
+    color: var(--user-text);
+}
+
+i {
+    user-select: text;
+}
+
+.bold-text {
+    user-select: text;
+    font-weight: bold;
+}
