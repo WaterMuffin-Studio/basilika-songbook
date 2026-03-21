@@ -22,13 +22,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-} 
+}
 
 .buttons-box_button-image {
     aspect-ratio: 1/1;
     width: 35vw;
+    height: 20vw;
     max-width: 10rem;
-    margin-bottom: 0.5em;
+    max-height: 6rem;
+    margin-bottom: 1em;
+    color: #4b4b4b89;
+    transition: color 0.5s;
 }
 
 .buttons-box_button-title {
@@ -54,6 +58,11 @@
     opacity: 1;
 }
 
+.buttons-box_button:has(p.selected) .buttons-box_button-image {
+    color: #b08b25;
+    transition: color 0.2s;
+}
+
 .continue-box {
     margin-top: 2rem;
     width: 100vw;
@@ -66,7 +75,7 @@
     width: 70%;
     padding: 0.5em 2em;
     color: #462f00;
-    
+
     background: #e8d297;
     border: solid 0.1em #b29442;
     border-radius: 0.5em;

@@ -2,9 +2,9 @@
   --user-text: #141b21;
   --user-bg: #fff;
   --user-chords: #c54623;
-  --user-fs: 1.15rem;
+  --user-fs: 1.35rem;
   --user-wrap: nowrap;
-  --user-font: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --user-font: Tahoma, Verdana, 'Segoe UI', Arial, sans-serif;
 
   --text: #6b6375;
   --text-h: #08060d;
@@ -18,11 +18,14 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
+  --font-1: Tahoma, 'Segoe UI', sans-serif;
+  --font-2: Verdana, Geneva, sans-serif;
+  
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: 18px/145% var(--user-font);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);

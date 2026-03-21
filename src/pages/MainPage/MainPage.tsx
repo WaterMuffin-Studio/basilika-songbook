@@ -1,10 +1,12 @@
 import './MainPage.css'
 import { useState } from 'react';
 import { songs } from '../../data/songs';
+import { useNavigate } from 'react-router-dom';
 import { useFollowings } from '../../context/FollowingsContext';
 import { SongCard } from '../../components/song_lists/SongCard/SongCard';
-import menuIcon from '../../assets/images/burger.png'
-import magnifierIcon from '../../assets/images/magnifier.png'
+import { HiHome } from "react-icons/hi";
+import { HiStar } from "react-icons/hi";
+import { HiOutlineSearch } from "react-icons/hi";
 
 
 interface Props {
@@ -15,6 +17,7 @@ export const MainPage = ({ onlyFollowings }: Props) => {
     const [searchValue, setSearchValue] = useState('');
     const [selectedCat, setSelectedCat] = useState('all');
     const { followings } = useFollowings();
+    const navigate = useNavigate();
 
     const categoryDict: Record<string, string> = {
         "Рядовые": "default",
@@ -35,27 +38,29 @@ export const MainPage = ({ onlyFollowings }: Props) => {
     return (<>
         <header className="header">
             <div className="search-menu">
-                <img className="burger" draggable="false" src={menuIcon} alt="menu" />
+                {
+                    onlyFollowings ?
+                    <HiHome className="follow-home-button" onClick={() => navigate(`/main`)} />
+                    :
+                    <HiStar className="follow-home-button" onClick={() => navigate(`/follow`)} />
+                }
                 <div className="search-box">
                     <input className="search" type="search" autoComplete="off" placeholder="Поиск..." value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
-                    <img draggable="false" className={`magnifier ${searchValue.length > 0 ? 'n' : ''}`} src={magnifierIcon} alt="search" />
+                    <HiOutlineSearch className={`magnifier ${searchValue.length > 0 ? 'n' : ''}`} />
                 </div>
             </div>
 
             <div className="cat-list">
                 <p onClick={() => setSelectedCat('all')} className={`cat c-all ${selectedCat == 'all' ? 'selected-cat' : ''}`}>Все</p>
-                <p onClick={() => setSelectedCat('default')} className={`cat c-default ${selectedCat == 'default' ? 'selected-cat' : ''}`}>Рядовые</p>
                 <p onClick={() => setSelectedCat('taize')} className={`cat c-taize ${selectedCat == 'taize' ? 'selected-cat' : ''}`}>ТЭЗЕ</p>
+                <p onClick={() => setSelectedCat('default')} className={`cat c-default ${selectedCat == 'default' ? 'selected-cat' : ''}`}>Рядовые</p>
+                <p onClick={() => setSelectedCat('christmas')} className={`cat c-christmas ${selectedCat == 'christmas' ? 'selected-cat' : ''}`}>Рождественские</p>
                 <p onClick={() => setSelectedCat('fast')} className={`cat c-fast ${selectedCat == 'fast' ? 'selected-cat' : ''}`}>Великопостные</p>
                 <p onClick={() => setSelectedCat('easter')} className={`cat c-easter ${selectedCat == 'easter' ? 'selected-cat' : ''}`}>Пасхальные</p>
-                <p onClick={() => setSelectedCat('christmas')} className={`cat c-christmas ${selectedCat == 'christmas' ? 'selected-cat' : ''}`}>Рождественские</p>
             </div>
         </header>
 
         <div className="content">
-
-            {onlyFollowings}
-
             {
                 onlyFollowings ? 
                 songs.map((item, index) => {
@@ -90,26 +95,12 @@ export const MainPage = ({ onlyFollowings }: Props) => {
                 })
 
             }
-            {/* <SongCard id='default-1' name='1. Иисус - Высшее Имя' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-2' name='2. Только один есть Бог' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-3' name='3. Он - Всевышний' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-4' name='4. В моей  жизни' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-5' name='5. Иисус, Ты Царь царей' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-6' name='6. Все придите, песню споём' cats={['Рядовые', 'Пасхальные']} isFollowed={false} ></SongCard>
-            <SongCard id='default-7' name='7. Богу поём Аллилуйя' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-8' name='8. Иисус, Ты моя жизнь' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-9' name='9. Святое имя Иисус' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-10' name='10. Иисус, Ты выходишь на берег' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-11' name='11. Слава Тебе Отче' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-12' name='12. Господу Богу песню пойте' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-13' name='13. Сердце Господу поёт' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-14' name='14. Пусть сойдет Дух Твой' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-15' name='15. Святое имя Господа славлю' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-16' name='16. Широко благодати Твоей течёт река' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-17' name='17. Дух Святой, принеси огонь' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-18' name='18. В Духе соединившись' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-19' name='19. Прихожу к Тебе я' cats={['Рядовые']} isFollowed={false} ></SongCard>
-            <SongCard id='default-20' name='20. Молись о Мириям' cats={['Рядовые']} isFollowed={false} ></SongCard> */}
+            
+            {
+                (onlyFollowings && followings.length == 0) ?
+                <p className="no-followings-message">У вас нет избранных песен</p>
+                : true
+            }
         </div>
 
     </>);

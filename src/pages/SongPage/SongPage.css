@@ -1,0 +1,47 @@
+.songpage-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    min-height: 6vh;
+    height: 5rem;
+    z-index: 3;
+    padding: 0 0.5rem;
+    
+    background: #fffef4;
+
+    -webkit-box-shadow: 0px 2px 6px -5px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0px 2px 6px -5px rgba(34, 60, 80, 0.6);
+    box-shadow: 0px 2px 6px -5px rgba(34, 60, 80, 0.6);
+}
+
+
+.songpage-header .songpage-back-button,.songpage-header .songpage-heart-button {
+    aspect-ratio: 1/1;
+    min-width: 4vh;
+    min-height: 4vh;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #785801c0;
+}
+.songpage-heart-button.no {
+    display: none;
+}
+
+.songpage-song-name {
+    text-align: center;
+    font-size: var(--user-fs);
+    color: var(--user-text);
+    margin: 0;
+    padding: 0;
+}
+
+.songpage-content {
+    margin-top: calc(max(6vh, 5rem));
+}

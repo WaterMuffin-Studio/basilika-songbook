@@ -2,9 +2,8 @@ import { useState } from 'react';
 import './SongCard.css'
 import { useFollowings } from '../../../context/FollowingsContext';
 import { useNavigate } from 'react-router-dom';
-import folIcon from '../../../assets/images/fol.png'
-import nofolIcon from '../../../assets/images/nofol.png'
-
+import { HiOutlineHeart } from "react-icons/hi";
+import { HiHeart } from "react-icons/hi";
 
 interface SongCardProps {
     id: string,
@@ -39,7 +38,12 @@ export const SongCard = ({id, name, cats, isFollowed = false}: SongCardProps) =>
                 <p className="song-cats">{cats.join(', ')}</p>
             </div>
             <div className="song-box_button-box">
-                <img src={isSongFollowed ? folIcon : nofolIcon} onClick={() => changeFollowingStatus()} className={`song-following-button`} draggable="false" />
+                {
+                    isSongFollowed ?
+                    <HiHeart onClick={() => changeFollowingStatus()} className={`song-following-button`}/>
+                    :
+                    <HiOutlineHeart onClick={() => changeFollowingStatus()} className={`song-following-button`}/>
+                }
             </div>
         </div>
     </>);

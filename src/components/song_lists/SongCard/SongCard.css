@@ -32,11 +32,9 @@
 .song-following-button {
     aspect-ratio: 1/1;
     height: 3rem;
-    background: url('../../../assets/images/nofol.png');
-    background-size: 100%;
-    background-position: center;
-    opacity: 0.5;
+    width: 3rem;
     cursor: pointer;
+    color: #b7a573;
 }
 
 .song-name {
