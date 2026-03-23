@@ -1,13 +1,25 @@
 import { parseLine } from '../../../utils/parseChords';
+import { useState } from 'react';
+import { transpone } from '../../../utils/transponeChrods';
+import { useSettings } from '../../../hooks/useSettings';
 import './SongView.css';
 
 interface Props {
     lyrics: string;
     showChords: boolean;
+    transponeStep: number;
 }
 
-export const SongView = ({ lyrics, showChords }: Props) => {
+export const SongView = ({ lyrics, showChords, transponeStep }: Props) => {
+    const { settings } = useSettings();
+    const startChordsSystem = settings.chordsStyle;
+    const [chordsSystem, setChordsSystem] = useState<"en" | "eu">("en");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const lines = lyrics.split('\n').filter(line => line.trim() !== '');
+    setTimeout(() => {
+        setChordsSystem(startChordsSystem);
+        setIsLoading(false)
+    }, 0);
 
     const renderTextWithBold = (text: string, boldRanges: { start: number; end: number }[]) => {
         if (boldRanges.length === 0) return text;
@@ -56,13 +68,13 @@ export const SongView = ({ lyrics, showChords }: Props) => {
                                         key={i}
                                         style={{ marginLeft: `${chord.pos}ch`, position: 'absolute' }}
                                     >
-                                        {chord.name}
+                                        { !isLoading && transpone(chord.name, transponeStep, chordsSystem)}
                                     </span>
                                 ))}
                             </div>
                         )}
-                        <div className="text-line">
-                            {renderTextWithBold(text, boldRanges)}
+                        <div className={`text-line ${showChords ? "" : "wrappable"}`}>
+                            {renderTextWithBold(text, boldRanges)}{!showChords && <span className="red">*</span>}
                         </div>
                     </div>
                 );

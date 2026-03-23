@@ -5,6 +5,7 @@
     justify-content: space-between;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100vw;
     min-height: 6vh;
     height: 5rem;
@@ -18,8 +19,19 @@
     box-shadow: 0px 2px 6px -5px rgba(34, 60, 80, 0.6);
 }
 
+.songpage-right-buttons-group {
+    min-width: 8vh;
+    width: 8rem;
+    min-height: 4vh;
+    height: 4rem;
+    
+    display: flex;
+    justify-content: space-between;
+}
 
-.songpage-header .songpage-back-button,.songpage-header .songpage-heart-button {
+.songpage-header .songpage-back-button,
+.songpage-header .songpage-right-buttons-group .songpage-heart-button,
+.songpage-header .songpage-right-buttons-group .songpage-cog {
     aspect-ratio: 1/1;
     min-width: 4vh;
     min-height: 4vh;
@@ -30,18 +42,66 @@
     padding: 0.5rem;
     color: #785801c0;
 }
-.songpage-heart-button.no {
+.songpage-header .songpage-right-buttons-group .songpage-heart-button.no {
     display: none;
 }
 
 .songpage-song-name {
     text-align: center;
     font-size: var(--user-fs);
-    color: var(--user-text);
-    margin: 0;
+    /* color: var(--user-text); */
+    color: #141b21;
+    margin: 0.2rem 0 0 0;
     padding: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100vw - (max(4rem, 4vh) * 3));
 }
 
 .songpage-content {
+    background: var(--user-bg);
     margin-top: calc(max(6vh, 5rem));
+}
+
+.transposition-control, 
+.font-change-control {
+    display: flex;
+    align-items: center;
+    margin: 1rem 1rem 0.5rem 1rem;
+}
+.transposition-control.no, 
+.font-change-control.no {
+    display: none;
+}
+
+.transposition-title, 
+.font-change-title {
+    color: var(--user-text);
+    margin: 0 0.5rem;
+    font-size: 1.4rem;
+    min-width: 3ch;
+}
+
+.font-change-title {
+    min-width: 4ch;
+}
+
+.transposition-value, 
+.font-change-value {
+    color: #785801c0;
+    font-weight: 700;
+}
+
+.transposition-button, 
+.font-change-button {
+    aspect-ratio: 1/1;
+    color: #785801c0;
+    height: 2rem;
+    width: 2rem;
+}
+
+span.no {
+    display: none;
 }

@@ -6,7 +6,7 @@ export interface UserSettings {
     bgColor: string,
     
     fontStyle: string, // font1 || font2 || font3
-    chordsStyle: string, // en || euro
+    chordsStyle: "en" | "eu", // en || eu
     chordsColor: string,
     showChordsFingerings: boolean,
     showStrummingHint: boolean,

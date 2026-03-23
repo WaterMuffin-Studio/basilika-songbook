@@ -1,15 +1,16 @@
 .song-view {
     /* font-family: 'Courier New', monospace; */
     font-family: var(--user-font);
+    touch-action: pan-x pan-y pinch-zoom;
+    overflow: auto;
 
-    padding: 0.1rem 1rem;
-    margin-top: calc(var(--user-fs) + 0.2rem);
+    padding: 0.1rem 1rem 2rem 1rem;
     text-align: start;
 }
 
 .song-line {
     position: relative;
-    margin-top: calc(1.6 * var(--user-fs));
+    margin-top: calc(1.6 * var(--user-song-fs));
     white-space: var(--user-wrap);
 }
 
@@ -20,15 +21,23 @@
     width: 100%;
     white-space: var(--user-wrap);
     font-weight: bold !important; 
-    font-size: var(--user-fs);
+    font-size: calc(var(--user-fs));
     color: var(--user-chords);
 }
 
 .text-line {
-    white-space: var(--user-wrap);
+    white-space: nowrap;
     user-select: text;
     font-size: var(--user-fs);
     color: var(--user-text);
+}
+.text-line.wrappable {
+    font-size: var(--user-song-fs);
+    white-space: wrap;
+    line-height: calc(var(--user-song-fs) + 1rem);
+}
+.song-line:has(.text-line.wrappable) {
+    margin-top: 1rem;
 }
 
 i {
@@ -42,4 +51,8 @@ i {
 
 .bold-text i {
     font-style: italic !important;
+}
+
+span.red {
+    color: #960000;
 }

@@ -4,15 +4,18 @@ import { EnteringPage } from './pages/EnteringPage/EnteringPage'
 import { MainPage } from './pages/MainPage/MainPage'
 import { FollowingsProvider } from './context/FollowingsContext';
 import { SongPage } from './pages/SongPage/SongPage';
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // import { SettingsProvider } from './context/SettingsContext';
 // import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 
 function App() {
    const userExists = localStorage.getItem('user-exist') === 'exist';
-
+   
    return (
       <HashRouter>
+         <ScrollToTop/>
          <FollowingsProvider>
             <Routes>
                {/* Главная страница */}
@@ -32,7 +35,7 @@ function App() {
                <Route path="/main" element={<MainPage onlyFollowings={false} />} />
                <Route path="/follow" element={<MainPage onlyFollowings={true} />} />
                <Route path="/song/:id" element={<SongPage />} />
-               {/* <Route path="/settings" element={<SettingsPage />} /> */}
+               <Route path="/settings" element={<SettingsPage />} />
 
                {/* 404 (все неизвестные пути на главную) */}
                <Route path="*" element={<Navigate to="/" replace />} />

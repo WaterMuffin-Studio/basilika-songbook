@@ -4,13 +4,13 @@ import type { UserSettings } from '../types/settings';
 const DEFAULT_SETTINGS: UserSettings = {
     guitarMode: false,
 
-    textSize: 16,
-    textColor: "#121212ff",
-    bgColor: "#fffdf5ff",
+    textSize: 1.35,
+    textColor: "#121212",
+    bgColor: "#fffdf5",
 
     fontStyle: "font1",
-    chordsStyle: "en",
-    chordsColor: "#a40606ff",
+    chordsStyle: "eu",
+    chordsColor: "#c54623",
     showChordsFingerings: true,
     showStrummingHint: true,
     showAudioHint: true,
@@ -33,7 +33,7 @@ export const useSettings = () => {
             } finally {
                 setIsLoading(false)
             }
-        };
+        };        
 
         loadSettings();
     }, []);
@@ -63,26 +63,35 @@ export const useSettings = () => {
 
     const setTextSize = (size: number) => {
         setSettings(prev => ({...prev, textSize: size}));
+        document.documentElement.style.setProperty('--user-song-fs', `${size}rem`);
     };
 
     const setTextColor = (color: string) => {
         setSettings(prev => ({...prev, textColor: color}));
+        document.documentElement.style.setProperty("--user-text", `${color}`);
     };
 
     const setBgColor = (color: string) => {
         setSettings(prev => ({...prev, bgColor: color}));
+        document.documentElement.style.setProperty("--user-bg", `${color}`);
     };
 
     const setChordsColor = (color: string) => {
         setSettings(prev => ({...prev, chordsColor: color}));
+        console.log("color", color)
+        document.documentElement.style.setProperty("--user-chords", color);
     };
 
-    const setChordsStyle = (id: string) => {
-        setSettings(prev => ({...prev, chordsStyle: id}));
+    const setChordsStyle = (style: "en" | "eu") => {
+        setSettings(prev => ({...prev, chordsStyle: style}));
     };
 
     const setFontStyle = (id: string) => {
         setSettings(prev => ({...prev, fontStyle: id}));
+    };
+
+    const resetSettings = () => {
+        setSettings(DEFAULT_SETTINGS);
     };
 
     return {
@@ -97,6 +106,7 @@ export const useSettings = () => {
         setBgColor,
         setChordsColor,
         setChordsStyle,
-        setFontStyle
+        setFontStyle,
+        resetSettings
     };
 }

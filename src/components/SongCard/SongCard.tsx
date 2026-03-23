@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './SongCard.css'
-import { useFollowings } from '../../../context/FollowingsContext';
+import { useFollowings } from '../../context/FollowingsContext';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineHeart } from "react-icons/hi";
 import { HiHeart } from "react-icons/hi";
